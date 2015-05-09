@@ -1,0 +1,88 @@
+CREATE DATABASE EmpresaBD2;
+USE EmpresaBD2;
+
+CREATE TABLE IF NOT EXISTS empleado (
+         ssn    INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+         nombre         VARCHAR(50)   NOT NULL,
+	 fechaNac  DATE,
+	 sexo BIT(1) NOT NULL,
+         salario        DECIMAL(9,2),
+	 deptoAsignadoID    INT UNSIGNED  NOT NULL,
+	 supervisorSSN    INT UNSIGNED,
+	 PRIMARY KEY  (ssn),
+	 FOREIGN KEY (supervisorSSN) 
+        	REFERENCES empleado(ssn)
+        	ON DELETE CASCADE ON UPDATE CASCADE         
+       ) ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS departamento (
+         deptoID    INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+         nombre         VARCHAR(30)   NOT NULL,
+	 supervisorSSN    INT UNSIGNED NOT NULL,
+         fechaEmpSup  DATE, 
+	PRIMARY KEY  (deptoID),
+	CONSTRAINT unicoNombre UNIQUE (nombre),
+	FOREIGN KEY (supervisorSSN) 
+        	REFERENCES empleado(supervisorSSN)
+        	ON DELETE CASCADE ON UPDATE CASCADE
+       ) ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS familiar (
+         nombre         VARCHAR(30)   NOT NULL,
+	 fechaNac  DATE,
+	 sexo BIT(1) NOT NULL,
+	 paretesco  VARCHAR(30)   NOT NULL,
+	 empleadoSSN   INT UNSIGNED  NOT NULL,
+	PRIMARY KEY  (empleadoSSN),
+	FOREIGN KEY (empleadoSSN) 
+        	REFERENCES empleado(ssn)
+        	ON DELETE CASCADE ON UPDATE CASCADE
+       ) ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS direccion (
+	 empleadoSSN    INT UNSIGNED  NOT NULL,
+         calle         VARCHAR(30)   NOT NULL,
+	 nro INT UNSIGNED  NOT NULL,
+	 localidad VARCHAR(30)   NOT NULL,
+	PRIMARY KEY  (empleadoSSN),
+	FOREIGN KEY (empleadoSSN) 
+        	REFERENCES empleado(ssn)
+        	ON DELETE CASCADE ON UPDATE CASCADE	
+       ) ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS lugar (
+	 id INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+	 nombre         VARCHAR(30)   NOT NULL,
+	 calle         VARCHAR(30)   NOT NULL,
+	 nro INT UNSIGNED  NOT NULL,
+	 localidad VARCHAR(30)   NOT NULL,
+	  idProyecto INT UNSIGNED  NOT NULL,
+         PRIMARY KEY  (id),
+	 FOREIGN KEY (idProyecto) 
+        	REFERENCES proyecto(id)
+        	ON DELETE CASCADE ON UPDATE CASCADE
+       ) ENGINE=INNODB;
+
+
+CREATE TABLE IF NOT EXISTS proyecto (
+	 id INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+	 nombre         VARCHAR(50)   NOT NULL,
+	 PRIMARY KEY  (id),	
+	CONSTRAINT unicoNombre UNIQUE (nombre)
+       ) ENGINE=INNODB;
+
+
+CREATE TABLE IF NOT EXISTS EmpleadoEnProyecto (
+	 empleadoSSN    INT UNSIGNED  NOT NULL,
+	 idProyecto INT UNSIGNED  NOT NULL,
+	 horasSemanalesTrabajadas INT UNSIGNED  NOT NULL,
+	PRIMARY KEY  (empleadoSSN),
+	FOREIGN KEY (empleadoSSN) 
+        	REFERENCES empleado(ssn)
+        	ON DELETE CASCADE ON UPDATE CASCADE	
+       ) ENGINE=INNODB;
+
+
+
+
+
