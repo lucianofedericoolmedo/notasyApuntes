@@ -1,0 +1,7 @@
+La empresa está organizada en departamentos. Cada departamento tiene un nombre único, un número único y siempre tiene un empleado que lo dirige. Nos interesa la fecha en que dicho empleado comenzó a dirigir el departamento. Un departamento puede estar distribuido en varios lugares.
+
+Cada departamento controla un cierto número de proyectos, cada uno de los cuales tienen un nombre y número únicos, y se efectúa en un solo lugar. Un departamento puede no estar involucrado en proyectos.
+
+Almacenaremos el nombre, número de seguridad social, dirección, salario, sexo y fecha de nacimiento de cada empleado. Todo empleado esta´ asignado a un departamento, pero puede trabajar en varios proyectos, que no necesariamente estarán controlados por el mismo departamento. Nos interesa el número de horas por semana que un empleado trabaja en cada proyecto, y también quien es supervisor directo de cada empleado. No todo empleado es supervisor.
+
+Queremos mantenernos al tanto de los familiares de cada empleado para administrar sus seguros. De cada familiar almacenaremos el nombre, sexo, fecha de nacimiento y parentesco con el empleado.

@@ -1,0 +1,13 @@
+Empleado = ssn, nombre,salario, noche,fNac, ssnSupervisor,idDeptoAsignado,sexo
+Departamento = idDepto, nombre, ssnSupervisor,idDepto,fecha
+Familiar = ssn, salario, noche,fNac, ssnSupervisor,sexo
+Direccion = ssn , calle, nro, piso,localidad
+EmpTrabajoProy= ssn,idProyecto,horasTrabajadasSemanales
+Familiar = ssnE, nombre, fNac, parentesco
+Proyecto = idP, nombre, idLugar
+DeptoLugar = idDepto , idLugar
+Lugar = idLugar, nombre, calle, nro, piso, localidad
+
+
+
+
